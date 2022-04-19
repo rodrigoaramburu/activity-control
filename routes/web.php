@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/categorias', function () {
     return view('category');
 });
+
+Route::get('/atividades', function () {
+    return view('activities');
+});

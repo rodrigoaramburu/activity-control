@@ -11,5 +11,5 @@
     </div>
     @error('name')
         <div class="text-red-500 text-xl p-2 bg-red-100 mt-2">{{$message}}</div>
-    @endif
+    @enderror
 </div>
