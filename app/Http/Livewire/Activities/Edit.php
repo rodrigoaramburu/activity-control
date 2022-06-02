@@ -56,7 +56,10 @@ class Edit extends Component
     public function update()
     {
         $this->validate([
-            'name' => 'required|unique:activities',
+            'name' => 'required|unique:activities,'.$this->activity->id,
+        ],[
+            'name.required' => 'O nome da atividade deve ser preenchido',
+            'name.unique' => 'Já existe uma atividade com esse nome'
         ]);
 
         $this->activity->update([

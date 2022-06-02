@@ -1,4 +1,4 @@
-<tr>
+<tr class="odd:bg-gray-100/10">
     <td>{{$session->activity->name}}</td>
     <td>{{$session->duration()}} min.</td>
     <td>{{$session->begin?->format('d/m/Y H:i')}}</td>

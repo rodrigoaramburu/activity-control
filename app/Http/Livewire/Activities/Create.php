@@ -46,6 +46,10 @@ class Create extends Component
     {       
         $this->validate([
             'name' => 'required|unique:activities',
+        ],
+        [
+            'name.required' => 'O nome da atividade deve ser preenchido',
+            'name.unique' => 'Já existe uma atividade com esse nome'
         ]);
         
         Activity::create([

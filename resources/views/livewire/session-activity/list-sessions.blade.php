@@ -11,12 +11,12 @@
     </div>
     
     <table  class="text-white w-full mt-4">
-        <tr  class="bg-gray-100/50">
-            <th>Atividade</th>
-            <th>Duração</th>
-            <th>Início</th>
-            <th>Final</th>
-            <th>Descrição</th>
+        <tr class="bg-white text-black">
+            <th class="p-1">Atividade</th>
+            <th class="p-1">Duração</th>
+            <th class="p-1">Início</th>
+            <th class="p-1">Final</th>
+            <th class="p-1">Descrição</th>
             <th></th>
         </tr>
         @foreach($sessions as $session)

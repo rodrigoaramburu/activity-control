@@ -10,7 +10,7 @@
                 <label class="block" for="name">Nome:</label>
                 <input class="w-full" type="text" id="name" wire:model.defer="name" placeholder="Nome da Atividade">
                 @error('name')
-                <div class="text-red-500 text-xl p-2 bg-red-100 mt-2">{{$message}}</div>
+                <div class="text-red-500 p-2 bg-red-100 mt-2">{{$message}}</div>
                 @enderror
             </div>
             
@@ -22,7 +22,7 @@
                     @endforeach
                 </select>
                 @error('categoryId')
-                <div class="text-red-500 text-xl p-2 bg-red-100 mt-2">{{$message}}</div>
+                <div class="text-red-500 p-2 bg-red-100 mt-2">{{$message}}</div>
                 @enderror
             </div>
                 
@@ -36,7 +36,7 @@
                 <input class="w-full" type="time" id="timePerDay" wire:model.defer="timePerDay" placeholder="Horas Diárias">
             </div>    
 
-            <button wire:click="save" class="bg-white px-4 py-2 rounded flex justify-center gap-2">
+            <button wire:click="save" class="flex gap-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                 </svg>

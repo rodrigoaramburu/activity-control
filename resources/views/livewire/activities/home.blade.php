@@ -15,17 +15,22 @@
         
     </div>
     
-    <button wire:click="openCreate" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-2">Adicionar</button>
+    <button wire:click="openCreate" class="flex gap-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+        </svg>
+        Nova atividade
+    </button>
 
     <livewire:activities.create />
     <livewire:activities.edit />
 
     <table class="text-white w-full">
-        <tr class="bg-gray-100/50">
-            <th>Atividade</th>
-            <th>Categoria</th>
-            <th>Valor Por Hora</th>
-            <th>Meta diária</th>
+        <tr class="bg-white text-black">
+            <th class="p-1">Atividade</th>
+            <th class="p-1">Categoria</th>
+            <th class="p-1">Valor Por Hora</th>
+            <th class="p-1">Meta diária</th>
             <th></th>
         </tr>
     @foreach($activities as $activity)

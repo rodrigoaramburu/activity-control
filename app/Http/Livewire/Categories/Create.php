@@ -21,6 +21,10 @@ class Create extends Component
 
         $this->validate([
             'name' => 'required|unique:categories'
+        ],
+        [
+            'name.required' => 'O nome da categoria deve ser preenchido',
+            'name.unique' => 'Já existe uma categoria com esse nome'
         ]);
 
         Category::create([
