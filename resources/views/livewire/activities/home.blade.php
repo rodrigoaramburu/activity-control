@@ -15,12 +15,12 @@
         
     </div>
     
-    <button wire:click="openCreate" class="bg-white rounded py-2 px-4 mb-2">Adicionar</button>
+    <button wire:click="openCreate" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-2">Adicionar</button>
 
     <livewire:activities.create />
     <livewire:activities.edit />
 
-    <table class="text-white w-full ">
+    <table class="text-white w-full">
         <tr class="bg-gray-100/50">
             <th>Atividade</th>
             <th>Categoria</th>

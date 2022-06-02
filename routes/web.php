@@ -15,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/categorias', function () {
     return view('category');
-});
+})->name('categories');
 
 Route::get('/atividades', function () {
     return view('activities');
-});
+})->name('activities');
+
+Route::get('/sessoes', function () {
+    return view('activity-sessions');
+})->name('activity-sessions');
