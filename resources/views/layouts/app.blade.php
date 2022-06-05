@@ -16,6 +16,7 @@
         }
     </style>
     <livewire:styles />
+    <livewire:scripts />
 
     <script src="{{asset('js/app.js')}}" defer></script>
 </head>
@@ -36,6 +37,9 @@
                 <a href="{{route('categories')}}" title="Categorias de Atividades" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-2">
                     Categorias
                 </a>
+                <a href="{{route('reports')}}" title="Categorias de Atividades" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-2">
+                    Relatórios
+                </a>
             </nav>
         </header>
         <main class="p-2">
@@ -44,7 +48,7 @@
         
     </div>
 
-    <livewire:scripts />
+
 </body>
 
 </html>

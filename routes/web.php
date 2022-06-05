@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('activity-sessions');
+})->name('home');
+
 Route::get('/categorias', function () {
     return view('category');
 })->name('categories');
@@ -24,3 +28,8 @@ Route::get('/atividades', function () {
 Route::get('/sessoes', function () {
     return view('activity-sessions');
 })->name('activity-sessions');
+
+
+Route::get('/relatorios', function () {
+    return view('reports');
+})->name('reports');

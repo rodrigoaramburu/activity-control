@@ -34,4 +34,9 @@ class ActivitySession extends Model
         return $this->end->diffInMinutes($this->begin);
     }
 
+    public function value()
+    {
+        return $this->duration() / 60  * $this->activity->valuePerHour;
+    }
+
 }

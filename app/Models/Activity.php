@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -17,6 +16,13 @@ class Activity extends Model
         'valuePerHour',
         'timePerDay'
     ];
+
+
+    public function timePerDayInHour(): float
+    {
+        $tmp = explode(':',$this->timePerDay);
+        return  $tmp[0] + $tmp[1] /60;
+    }
 
     public function category(): BelongsTo
     {
