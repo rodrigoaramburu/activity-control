@@ -4,13 +4,14 @@ namespace App\Http\Livewire\Reports;
 
 use Livewire\Component;
 use App\Models\ActivitySession;
+use Illuminate\Support\Collection;
 
 class ReportValue extends Component
 {
 
     public string $period = 'all';
          
-    public $activitiesPerHour;
+    public Collection $activitiesPerValue;
 
     public function render()
     {

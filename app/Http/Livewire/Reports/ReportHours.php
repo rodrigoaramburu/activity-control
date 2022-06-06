@@ -29,6 +29,7 @@ class ReportHours extends Component
                     'x' => $group->first()->activity->name
                 ];
         })->values();
+        
         $this->emit('chartChange', $this->activitiesPerHour);
         return view('livewire.reports.report-hours');
     }

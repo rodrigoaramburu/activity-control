@@ -12,6 +12,8 @@ class ReportMeta extends Component
 
     public ?int $activity_id = null;
     public Collection $activities;
+    public Collection $sessionsByDate;
+    public Collection $meta;
 
     public function mount(){
         $this->activities = Activity::orderBy('name')->get();

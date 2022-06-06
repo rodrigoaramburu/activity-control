@@ -12,10 +12,35 @@ class Create extends Component
     public bool $showCreate = false;
     public bool $showCronometer = false;
 
-    public ?string $begin = null;
-    public ?string $end = null;
-    public int $activity_id = 1; 
-    public string $description = '';
+    public ActivitySession $activitySession;
+
+
+    protected $rules = [
+        'activitySession.begin' => 'required',
+        'activitySession.end' => 'required',
+        'activitySession.activity_id' => 'required|integer|exists:activities,id',
+        'activitySession.description' => 'string',
+    ];
+
+    protected $messages = [
+        'activitySession.begin.required' => 'Informe a data e hora de início',
+        'activitySession.begin.date_format' => 'Informe a data e hora de início no formato Y-m-d\TH:i',
+        'activitySession.end.required' => 'Informe a data e hora de término',
+        'activitySession.end.date_format' => 'Informe a data e hora de término no formato Y-m-d\TH:i',
+        'activitySession.activity_id.required' => 'Informe a atividade',
+        'activitySession.activity_id.integer' => 'Informe a atividade',
+        'activitySession.activity_id.exists' => 'Informe a atividade',
+    ];
+
+    public function mount()
+    {
+        $this->activitySession = new ActivitySession([
+            'begin' =>  null,
+            'end' => null,
+            'activity_id' => 0, 
+            'description' => '',
+        ]);
+    }
 
     public function render()
     {
@@ -50,36 +75,19 @@ class Create extends Component
 
     public function save(): void
     {
+        $this->validate();
 
-        $this->validate([
-            'begin' => 'required|date_format:Y-m-d\TH:i',
-            'end' => 'required|date_format:Y-m-d\TH:i',
-            'activity_id' => 'required|integer|exists:activities,id',
-        ],[
-            'begin.required' => 'Informe a data e hora de início',
-            'begin.date_format' => 'Informe a data e hora de início no formato Y-m-d\TH:i',
-            'end.required' => 'Informe a data e hora de término',
-            'end.date_format' => 'Informe a data e hora de término no formato Y-m-d\TH:i',
-            'activity_id.required' => 'Informe a atividade',
-            'activity_id.integer' => 'Informe a atividade',
-            'activity_id.exists' => 'Informe a atividade',
-        ]);
-
-        ActivitySession::create([
-            'begin' => $this->begin,
-            'end' => $this->end,
-            'activity_id' => $this->activity_id,
-            'description' => $this->description,
-        ]);
-
+        $this->activitySession->save();
         $this->emit('activity-session:created');
         $this->reset([
             'showCreate',
             'showCronometer',
-            'begin',
-            'end',
-            'activity_id',
-            'description',
+        ]);
+        $this->activitySession = new ActivitySession([
+            'begin' =>  null,
+            'end' => null,
+            'activity_id' => 0, 
+            'description' => '',
         ]);
     }
 

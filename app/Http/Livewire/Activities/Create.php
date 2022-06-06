@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Activities;
 use Livewire\Component;
 use App\Models\Activity;
 use App\Models\Category;
+use Illuminate\Support\Collection;
 use App\Http\Livewire\Activities\Home;
 
 class Create extends Component
@@ -12,15 +13,20 @@ class Create extends Component
 
     public bool $show = false;
 
-    public string $name = '';
-    public int $categoryId = 1;
-    public float $valuePerHour = 0;
-    public string $timePerDay = '00:00';
+    public Activity $activity;
 
     protected $rules = [
-        'activity.name' => 'required',
-        'activity.valuePerHour' => 'integer',
-        'activity.timePerDay' => 'time',
+        'activity.name' => 'required|unique:activities,name',
+        'activity.category_id' => 'required|exists:categories,id',
+        'activity.valuePerHour' => 'numeric|min:0',
+        'activity.timePerDay' => 'string',
+    ];
+
+    protected $messages = [
+        'activity.name.required' => 'O nome da atividade deve ser preenchido',
+        'activity.name.unique' => 'Já existe uma atividade com esse nome',
+        'activity.category_id.required' => 'A categoria deve ser preenchido',
+        'activity.category_id.exists' => 'Categoria inválida',
     ];
 
     protected $listeners = [
@@ -31,7 +37,11 @@ class Create extends Component
     
     public function mount()
     {
-        $this->activity = Activity::make();
+        $this->activity = new Activity([
+            'category_id' =>  0,
+            'valuePerHour' => 0,
+            'timePerDay' => '00:00',
+        ]);
     }
     
     public function render()
@@ -44,24 +54,23 @@ class Create extends Component
     
     public function save()
     {       
-        $this->validate([
-            'name' => 'required|unique:activities',
-        ],
-        [
-            'name.required' => 'O nome da atividade deve ser preenchido',
-            'name.unique' => 'Já existe uma atividade com esse nome'
-        ]);
-        
+        $this->validate();
+
         Activity::create([
-            'name' => $this->name,
-            'category_id' => $this->categoryId,
-            'valuePerHour' => $this->valuePerHour * 100,
-            'timePerDay' => $this->timePerDay
+            'name' => $this->activity->name,
+            'category_id' => $this->activity->category_id,
+            'valuePerHour' => $this->activity->valuePerHour * 100,
+            'timePerDay' => $this->activity->timePerDay
         ]);
-        
-        $this->reset('name','categoryId','valuePerHour','timePerDay');
+
         $this->emitTo(Home::class, 'activity:created');
         $this->show = false;
+
+        $this->activity = new Activity([
+            'category_id' =>  0,
+            'valuePerHour' => 0,
+            'timePerDay' => '00:00',
+        ]);
     }
 
     public function show()

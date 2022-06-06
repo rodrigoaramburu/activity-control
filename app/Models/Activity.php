@@ -21,7 +21,7 @@ class Activity extends Model
     public function timePerDayInHour(): float
     {
         $tmp = explode(':',$this->timePerDay);
-        return  $tmp[0] + $tmp[1] /60;
+        return  intval($tmp[0]) + intval($tmp[1]) / 60;
     }
 
     public function category(): BelongsTo

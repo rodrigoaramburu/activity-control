@@ -6,7 +6,7 @@
         <a href="{{route('reports',['report'=>'meta'])}}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-2">Meta</a>
     </div>
     
-    @if(request()->input('report') == 'hours')
+    @if(request()->input('report') == 'hours' || request()->input('report') == null)
     <livewire:reports.report-hours />
     @endif
     
